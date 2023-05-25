@@ -14,7 +14,7 @@ public class NeuralNetworkParametersDto {
     private double temperatureCoefficient;
     private double currencyCoefficient;
     private double holidayCoefficient;
-    private double salaryCoefficient;
+    private double paydayCoefficient;
 
     public Map<String, Double> getNameAndValueCoeficientMap() {
         Map<String, Double> parameters = new HashMap<>();

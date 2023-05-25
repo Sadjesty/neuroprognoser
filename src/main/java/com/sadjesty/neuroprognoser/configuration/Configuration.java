@@ -1,4 +1,4 @@
-package com.sadjesty.neuroprognoser;
+package com.sadjesty.neuroprognoser.configuration;
 
 import com.sadjesty.neuroprognoser.service.ParameterProvider;
 import org.springframework.context.annotation.Bean;

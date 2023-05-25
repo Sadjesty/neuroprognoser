@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Forecasts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #e6e6e6;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Forecast Date</th>
+        <th>Temperature</th>
+        <th>Exchange Rate</th>
+        <th>Holiday Coefficient</th>
+        <th>Payday Coefficient</th>
+        <th>Actual Orders</th>
+        <th>Predicted Orders</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="forecast : ${forecasts}">
+        <td th:text="${forecast.forecastDate}"></td>
+        <td th:text="${forecast.temperature}"></td>
+        <td th:text="${forecast.exchangeRate}"></td>
+        <td th:text="${forecast.holidayCoefficient}"></td>
+        <td th:text="${forecast.paydayCoefficient}"></td>
+        <td th:text="${forecast.actualOrders}"></td>
+        <td th:text="${forecast.predictedOrders}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

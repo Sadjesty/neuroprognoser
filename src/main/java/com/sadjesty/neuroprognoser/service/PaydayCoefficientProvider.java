@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 
 @Service
-public class SalaryCoefficientProvider implements ParameterProvider {
+public class PaydayCoefficientProvider implements ParameterProvider {
 
     @Override
     public double provideParameter() {
