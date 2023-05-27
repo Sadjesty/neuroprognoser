@@ -2,11 +2,12 @@ package com.sadjesty.neuroprognoser.service;
 
 import com.sadjesty.neuroprognoser.dto.ExchangeRateResponse;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-@Component
+@Service
+@Profile("dev")
 public class CurrencyExchangeRateProvider implements ParameterProvider {
 
     private final RestTemplate restTemplate;
