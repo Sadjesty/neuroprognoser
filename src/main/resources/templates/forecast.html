@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Forecast</title>
+    <title>Прогноз</title>
     <style>
         body {
             background-color: #f5f5f5;
@@ -30,9 +30,9 @@
 </head>
 <body>
 <div class="container">
-    <h1>Forecast</h1>
-    <p>The forecasted number of orders for the next day is: <strong>10</strong></p>
-    <a class="btn" href="/home">Go back</a>
+    <h1>Прогноз</h1>
+    <p>Прогнозируемое число заказов: <strong th:text="${forecast}"></strong></p>
+    <a class="btn" href="/">Вернуться</a>
 </div>
 </body>
 </html>

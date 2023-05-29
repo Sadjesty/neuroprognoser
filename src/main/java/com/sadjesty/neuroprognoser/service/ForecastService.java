@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,17 +25,19 @@ public class ForecastService {
         return forecastRepository.save(forecastEntity);
     }
 
-    public ForecastDto getForecastByDate(LocalDate date) {
-        return forecastRepository.getForecastEntityByForecastDate(Date.valueOf(date))
-                .map(mapper::mapEntityToDto)
-                .orElseThrow(() -> new RuntimeException("Forecast not found"));
-    }
-
     public List<ForecastDto> getAllForecasts() {
         return forecastRepository.findAll()
                 .stream()
                 .map(mapper::mapEntityToDto)
                 .collect(Collectors.toList());
+    }
+
+    public void updateActualOrders(Long id, int actualOrders) {
+        Optional<ForecastEntity> optionalForecast = forecastRepository.findById(id);
+        optionalForecast.ifPresent(forecast -> {
+            forecast.setActualOrders(actualOrders);
+            forecastRepository.save(forecast);
+        });
     }
 
 }

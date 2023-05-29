@@ -10,6 +10,6 @@ import org.springframework.stereotype.Service;
 public class MockNeuralNetworkService implements NeuralNetworkEvaluatorService {
     @Override
     public double evaluate(NeuralNetworkParametersDto parametersDto) {
-        return 0;
+        return 120;
     }
 }

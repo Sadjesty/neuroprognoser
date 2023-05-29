@@ -5,11 +5,12 @@ import com.sadjesty.neuroprognoser.entity.ForecastEntity;
 import com.sadjesty.neuroprognoser.service.DemandForecastService;
 import com.sadjesty.neuroprognoser.service.ForecastService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,6 +38,13 @@ public class DemandForecastController {
         List<ForecastDto> forecasts = forecastService.getAllForecasts();
         model.addAttribute("forecasts", forecasts);
         return "forecasts";
+    }
+
+    @PutMapping("/forecasts/{id}")
+    @ResponseStatus(HttpStatus.SEE_OTHER)
+    public ResponseEntity<String> updateForecast(@PathVariable("id") Long id, @RequestParam("actualOrders") String actualOrders) {
+        forecastService.updateActualOrders(id, Integer.parseInt(actualOrders));
+        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body("{}");
     }
 
 }

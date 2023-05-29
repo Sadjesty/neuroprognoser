@@ -31,31 +31,46 @@
             background-color: #e6e6e6;
         }
     </style>
+    <script>
+        function updateForecast(id, actualOrders) {
+            fetch('/forecasts/' + id + '?actualOrders=' + actualOrders, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
 </head>
 <body>
 <table>
     <thead>
     <tr>
-        <th>Forecast Date</th>
-        <th>Temperature</th>
-        <th>Exchange Rate</th>
-        <th>Holiday Coefficient</th>
-        <th>Payday Coefficient</th>
-        <th>Actual Orders</th>
-        <th>Predicted Orders</th>
+        <th>Дата прогноза</th>
+        <th>Температура</th>
+        <th>Курс рубля</th>
+        <th>Праздничный коэфициент</th>
+        <th>Зарплатный коэфициент</th>
+        <th>Реальное число заказов</th>
+        <th>Прогноз</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="forecast : ${forecasts}">
+    <tr th:each="forecast : ${forecasts}" th:id="${forecast.id}">
         <td th:text="${forecast.forecastDate}"></td>
         <td th:text="${forecast.temperature}"></td>
         <td th:text="${forecast.exchangeRate}"></td>
         <td th:text="${forecast.holidayCoefficient}"></td>
         <td th:text="${forecast.paydayCoefficient}"></td>
-        <td th:text="${forecast.actualOrders}"></td>
+        <td contenteditable="true" th:text="${forecast.actualOrders}" class="editable"
+            onblur="updateForecast(this.parentElement.getAttribute('id'), this.innerText)"></td>
         <td th:text="${forecast.predictedOrders}"></td>
     </tr>
     </tbody>
+    <a class="btn" href="/">Вернуться</a>
 </table>
 </body>
 </html>
