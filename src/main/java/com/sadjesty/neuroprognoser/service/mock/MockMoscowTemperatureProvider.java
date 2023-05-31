@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Profile("mock-services")
 public class MockMoscowTemperatureProvider extends MoscowTemperatureProvider {
     public MockMoscowTemperatureProvider() {
-        super(null);
+        super(null, null);
     }
 
     @Override

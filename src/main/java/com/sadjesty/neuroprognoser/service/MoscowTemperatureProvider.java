@@ -2,6 +2,7 @@ package com.sadjesty.neuroprognoser.service;
 
 import com.sadjesty.neuroprognoser.dto.WeatherDataResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -11,16 +12,16 @@ import org.springframework.web.client.RestTemplate;
 public class MoscowTemperatureProvider implements ParameterProvider {
 
     private final RestTemplate restTemplate;
+    private final String apiUrl;
 
     @Autowired
-    public MoscowTemperatureProvider(RestTemplate restTemplate) {
+    public MoscowTemperatureProvider(RestTemplate restTemplate, @Value("app.forecast.currency.url") String apiUrl) {
         this.restTemplate = restTemplate;
+        this.apiUrl = apiUrl;
     }
 
     @Override
     public double provideParameter() {
-        String apiUrl = "https://api.weather.com/moscow/temperature"; // Пример URL для получения данных о температуре
-
         WeatherDataResponse weatherDataResponse = restTemplate.getForObject(apiUrl, WeatherDataResponse.class);
 
         if (weatherDataResponse != null) {
