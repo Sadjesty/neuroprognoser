@@ -10,8 +10,6 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.client.RestTemplate;
 
-import static org.mockito.Mockito.*;
-
 @ExtendWith(MockitoExtension.class)
 class MoscowTemperatureProviderTest {
 
